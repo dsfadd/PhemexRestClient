@@ -47,7 +47,7 @@ namespace PhemexClient.SpotApi
 
                 return result.As(result.Data.Result);
         }
-        internal async Task<WebCallResult<T>> SendPublicRequestAsync<T>(
+        internal async Task<WebCallResult<T>> SendDataRequestAsync<T>(
            string endpoint,
            HttpMethod method,
            CancellationToken cancellationToken,
@@ -55,7 +55,7 @@ namespace PhemexClient.SpotApi
            bool signed = false,
            bool ignoreRatelimit = false)
         {
-            var result = await base.SendRequestAsync<PhemexPublicResult<T>>(GetUri(endpoint), method, cancellationToken, parameters, signed, requestWeight: 0, parameterPosition: HttpMethodParameterPosition.InUri).ConfigureAwait(false);
+            var result = await base.SendRequestAsync<PhemexResultWithData<T>>(GetUri(endpoint), method, cancellationToken, parameters, signed, requestWeight: 0, parameterPosition: HttpMethodParameterPosition.InUri).ConfigureAwait(false);
 
             if (!result)
                 return result.As<T>(default);
@@ -69,7 +69,7 @@ namespace PhemexClient.SpotApi
         internal async Task<WebCallResult<PhemexExchangeInfo>> GetExchangeInfoAsync(CancellationToken cancellationToken=default)
         {
            
-            return await this.SendPublicRequestAsync<PhemexExchangeInfo>("/public/products", HttpMethod.Get, cancellationToken);
+            return await this.SendDataRequestAsync<PhemexExchangeInfo>("/public/products", HttpMethod.Get, cancellationToken);
         }
 
 

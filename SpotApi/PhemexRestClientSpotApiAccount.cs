@@ -1,13 +1,7 @@
-﻿using CryptoExchange.Net.CommonObjects;
-using CryptoExchange.Net;
+﻿using CryptoExchange.Net;
 using CryptoExchange.Net.Objects;
-using PhemexClient.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PhemexClient.Interfaces.SpotInterfaces;
+using PhemexClient.Models;
 
 namespace PhemexClient.SpotApi
 {
@@ -24,7 +18,7 @@ namespace PhemexClient.SpotApi
             var parameters = new Dictionary<string, object>();
             parameters.AddOptionalParameter("currency", currency);
 
-            return await _baseClient.SendRequestAsync<IEnumerable<SpotWallet>>("/spot/wallets",HttpMethod.Get, cancellationToken, signed:true).ConfigureAwait(false);
+            return await _baseClient.SendDataRequestAsync<IEnumerable<SpotWallet>>("/spot/wallets",HttpMethod.Get, cancellationToken, signed:true).ConfigureAwait(false);
            
         }
 

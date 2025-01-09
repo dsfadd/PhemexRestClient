@@ -6,12 +6,12 @@ namespace PhemexClient.Interfaces.SpotInterfaces
 {
     public interface IPhemexRestClientSpotApiTrading
     {
-        public Task<WebCallResult<PhemexSpotOrder>> PlaceOrderAsync(string symbol,
+        public Task<WebCallResult<PhemexMarginOrderInfo>> PlaceMarginOrderAsync(string symbol,
             OrderSide side,
             QuantityType qtyType,
+            string priceRp,
             string? quoteQtyRq = null,
             string? baseQtyRq = null,
-            string? priceRp = null,
             string? stopPxRp = null,
             TriggerType? trigger = null,
             TimeInForceType? timeInForce = null,
@@ -24,8 +24,20 @@ namespace PhemexClient.Interfaces.SpotInterfaces
             string? paybackQtyRq = null,
             CancellationToken cancellationToken = default);
 
-        public Task<WebCallResult<PhemexSpotOrder>> GetAllOpenOrdersAsync(string symbol, CancellationToken cancellationToken = default);
+        public Task<WebCallResult<PhemexSpotOrderInfo>> PlaceOrderAsync(string symbol,
+           OrderSide side,
+           QuantityType qtyType,
+           string priceEp,
+           string? quoteQtyEv = null,
+           string? baseQtyEv = null,
+           string? stopPxEp = null,
+           TriggerType? trigger = null,
+           TimeInForceType? timeInForce = null,
+           OrderType? ordType = null,
+           CancellationToken cancellationToken = default);
 
-        public Task<WebCallResult<PhemexSpotOrderMini>> GetOrderAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default);
+        //public Task<WebCallResult<PhemexSpotOrder>> GetAllOpenOrdersAsync(string symbol, CancellationToken cancellationToken = default);
+
+        //public Task<WebCallResult<PhemexSpotOrderMini>> GetOrderAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default);
     }
 }

@@ -74,32 +74,5 @@ namespace PhemexClient.ContractApi
                 .ConfigureAwait(false);
         }
 
-        public async Task<WebCallResult<PhemexSpotOrder>> GetAllOpenOrdersAsync(string symbol, CancellationToken cancellationToken = default)
-        {
-            var parameters = new Dictionary<string, object>()
-            {
-                { "symbol", symbol },
-
-             };
-
-
-            return await _baseClient.SendRequestAsync<PhemexSpotOrder>("/spot/orders", HttpMethod.Put, cancellationToken, parameters, signed: true).ConfigureAwait(false);
-        }
-
-        public async Task<WebCallResult<PhemexSpotOrderMini>> GetOrderAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default)
-        {
-            var parameters = new Dictionary<string, object>()
-            {
-                { "symbol", symbol }
-             };
-
-            #region OptinalParams
-            parameters.AddOptionalParameter("orderID", orderID);
-            parameters.AddOptionalParameter("clOrdID", clOrdID);
-
-            #endregion OptinalParams
-            return await _baseClient.SendRequestAsync<PhemexSpotOrderMini>("/api-data/spots/orders", HttpMethod.Put, cancellationToken, parameters, signed: true).ConfigureAwait(false);
-        }
-
     }
 }

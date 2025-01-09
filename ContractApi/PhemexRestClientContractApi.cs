@@ -63,7 +63,7 @@ namespace PhemexClient.ContractApi
            bool signed = false,
            bool ignoreRatelimit = false)
         {
-            var result = await base.SendRequestAsync<PhemexPublicResult<T>>(GetUri(endpoint), method, cancellationToken, parameters, signed, requestWeight: 0, parameterPosition: HttpMethodParameterPosition.InUri).ConfigureAwait(false);
+            var result = await base.SendRequestAsync<PhemexResultWithData<T>>(GetUri(endpoint), method, cancellationToken, parameters, signed, requestWeight: 0, parameterPosition: HttpMethodParameterPosition.InUri).ConfigureAwait(false);
 
             if (!result)
                 return result.As<T>(default);

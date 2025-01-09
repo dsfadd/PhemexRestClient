@@ -22,7 +22,7 @@ namespace PhemexClient.Objects
 #pragma warning restore
     }
 
-    internal class PhemexPublicResult<T>
+    internal class PhemexResultWithData<T>
     {
 
         [JsonProperty("code")]
