@@ -18,7 +18,7 @@ namespace PhemexClient.Models
         public string trigger { get; set; }
         public string pegPriceType { get; set; }
         public string stopDirection { get; set; }
-        public int bizError { get; set; }
+        public long bizError { get; set; }
         public string symbol { get; set; }
         public OrderSide side { get; set; }
         public string baseQtyRq { get; set; }
@@ -38,10 +38,10 @@ namespace PhemexClient.Models
         public string stopPxRp { get; set; }
         public string pegOffsetValueRp { get; set; }
         public bool autoBorrow { get; set; }
-        public int borrowCurrency { get; set; }
+        public long borrowCurrency { get; set; }
         public string borrowQtyRq { get; set; }
         public bool autoPayback { get; set; }
-        public int paybackCurrency { get; set; }
+        public long paybackCurrency { get; set; }
         public string paybackPrincipalQtyRq { get; set; }
         public string paybackInterestQtyRq { get; set; }
         public string hourlyInterestRateRr { get; set; }
@@ -88,26 +88,26 @@ namespace PhemexClient.Models
 
     public class PhemexSpotOrderByID
     {
-        public int avgPriceEp { get; set; }
-        public int avgTransactPriceEp { get; set; }
+        public long avgPriceEp { get; set; }
+        public long avgTransactPriceEp { get; set; }
         public string baseQtyEv { get; set; }
-        public int createTimeNs { get; set; }
-        public int cumBaseValueEv { get; set; }
-        public int cumFeeEv { get; set; }
-        public int cumQuoteValueEv { get; set; }
+        public long createTimeNs { get; set; }
+        public long cumBaseValueEv { get; set; }
+        public long cumFeeEv { get; set; }
+        public long cumQuoteValueEv { get; set; }
         public string execStatus { get; set; }
         public string feeCurrency { get; set; }
-        public int leavesBaseQtyEv { get; set; }
-        public int leavesQuoteQtyEv { get; set; }
+        public long leavesBaseQtyEv { get; set; }
+        public long leavesQuoteQtyEv { get; set; }
         public OrderStatus ordStatus { get; set; }
-        public string ordType { get; set; }
+        public OrderType ordType { get; set; }
         public string orderID { get; set; }
-        public int priceEp { get; set; }
+        public long priceEp { get; set; }
         public QuantityType qtyType { get; set; }
-        public int quoteQtyEv { get; set; }
+        public long quoteQtyEv { get; set; }
         public OrderSide side { get; set; }
         public string stopDirection { get; set; }
-        public int stopPxEp { get; set; }
+        public long stopPxEp { get; set; }
         public string symbol { get; set; }
         public TimeInForceType timeInForce { get; set; }
     }
