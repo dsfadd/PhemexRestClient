@@ -21,24 +21,21 @@ namespace PhemexClient.Converters
 
             foreach (var item in jsonArray)
             {
-                // Check for the "type" property to determine which specific product to deserialize
+                // Логируем тип продукта
                 var type = item["type"]?.ToString();
 
-                if (type == "spot")
+                if (type == "Spot")
                 {
-                    // Deserialize as PhemexSpotProduct
                     var spotProduct = item.ToObject<PhemexSpotProduct>(serializer);
                     products.Add(spotProduct);
                 }
-                else if (type == "perpetual")
+                else if (type == "Perpetual")
                 {
-                    // Deserialize as PhemexPerpetualProduct
                     var perpetualProduct = item.ToObject<PhemexPerpetualProduct>(serializer);
                     products.Add(perpetualProduct);
                 }
                 else
                 {
-                    // Handle unknown types or add a default case if necessary
                     throw new NotSupportedException($"Unsupported product type: {type}");
                 }
             }

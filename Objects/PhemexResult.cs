@@ -22,6 +22,19 @@ namespace PhemexClient.Objects
 #pragma warning restore
     }
 
+    internal class PhemexPublicResult<T>
+    {
+
+        [JsonProperty("code")]
+        public int? Code { get; set; }
+        [JsonProperty("msg")]
+        public string? Message { get; set; }
+
+
+#pragma warning disable 8618
+        public T Data { get; set; }
+#pragma warning restore
+    }
 
     internal class PhemexMDResult<T>
     {
