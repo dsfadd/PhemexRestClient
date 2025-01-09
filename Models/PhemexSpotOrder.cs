@@ -86,5 +86,30 @@ namespace PhemexClient.Models
         Created
     }
 
+    public class PhemexSpotOrderByID
+    {
+        public int avgPriceEp { get; set; }
+        public int avgTransactPriceEp { get; set; }
+        public string baseQtyEv { get; set; }
+        public int createTimeNs { get; set; }
+        public int cumBaseValueEv { get; set; }
+        public int cumFeeEv { get; set; }
+        public int cumQuoteValueEv { get; set; }
+        public string execStatus { get; set; }
+        public string feeCurrency { get; set; }
+        public int leavesBaseQtyEv { get; set; }
+        public int leavesQuoteQtyEv { get; set; }
+        public OrderStatus ordStatus { get; set; }
+        public string ordType { get; set; }
+        public string orderID { get; set; }
+        public int priceEp { get; set; }
+        public QuantityType qtyType { get; set; }
+        public int quoteQtyEv { get; set; }
+        public OrderSide side { get; set; }
+        public string stopDirection { get; set; }
+        public int stopPxEp { get; set; }
+        public string symbol { get; set; }
+        public TimeInForceType timeInForce { get; set; }
+    }
 
 }
