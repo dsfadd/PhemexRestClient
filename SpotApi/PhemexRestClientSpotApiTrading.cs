@@ -20,6 +20,19 @@ namespace PhemexClient.SpotApi
             _baseClient = baseClient;
         }
 
+        public async Task<WebCallResult<PhemexSpotOrderByID>> GetOrdersByIDAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default)
+        {
+            if (orderID is null && clOrdID is null) throw new ArgumentNullException(nameof(orderID)+nameof(clOrdID));
+            var parameters = new Dictionary<string, object>()
+            {
+                { "symbol", symbol },
+             };
+            parameters.AddOptionalParameter("orderID", orderID);
+            parameters.AddOptionalParameter("clOrdID", clOrdID);
+            return await _baseClient.SendDataRequestAsync<PhemexSpotOrderByID>("/api-data/spots/orders/by-order-id", HttpMethod.Get, cancellationToken, parameters, signed: true).ConfigureAwait(false);
+            
+        }
+
         public async Task<WebCallResult<PhemexMarginOrderInfo>> PlaceMarginOrderAsync(string symbol,
             OrderSide side,
             QuantityType qtyType,
