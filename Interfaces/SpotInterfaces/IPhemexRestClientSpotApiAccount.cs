@@ -7,6 +7,6 @@ namespace PhemexClient.Interfaces.SpotInterfaces
     public interface IPhemexRestClientSpotApiAccount
     {
 
-        public Task<WebCallResult<IEnumerable<SpotWallet>>> GetBalancesAsync(string? currency = null, CancellationToken cancellationToken = default);
+        public Task<WebCallResult<IEnumerable<PhemexSpotWallet>>> GetBalancesAsync(string? currency = null, CancellationToken cancellationToken = default);
     }
 }

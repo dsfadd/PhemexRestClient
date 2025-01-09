@@ -1,6 +1,6 @@
 ﻿namespace PhemexClient.Models
 {
-    public class SpotWallet
+    public class PhemexSpotWallet
     {
         public string currency { get; set; }
         public long balanceEv { get; set; }
