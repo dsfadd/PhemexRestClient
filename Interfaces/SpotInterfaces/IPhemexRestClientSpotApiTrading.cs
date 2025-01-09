@@ -38,6 +38,6 @@ namespace PhemexClient.Interfaces.SpotInterfaces
 
         //public Task<WebCallResult<PhemexSpotOrder>> GetAllOpenOrdersAsync(string symbol, CancellationToken cancellationToken = default);
 
-        //public Task<WebCallResult<PhemexSpotOrderMini>> GetOrderAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default);
+        public Task<WebCallResult<PhemexSpotOrderByID>> GetOrdersByIDAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default);
     }
 }
