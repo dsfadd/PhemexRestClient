@@ -18,7 +18,7 @@ namespace PhemexClient.SpotApi
             var parameters = new Dictionary<string, object>();
             parameters.AddOptionalParameter("currency", currency);
 
-            return await _baseClient.SendDataRequestAsync<IEnumerable<PhemexSpotWallet>>("/spot/wallets",HttpMethod.Get, cancellationToken, signed:true).ConfigureAwait(false);
+            return await _baseClient.SendDataRequestAsync<IEnumerable<PhemexSpotWallet>>("/spot/wallets",HttpMethod.Get, cancellationToken, parameters, signed:true).ConfigureAwait(false);
            
         }
 
