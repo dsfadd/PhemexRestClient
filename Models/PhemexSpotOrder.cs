@@ -24,7 +24,7 @@ namespace PhemexClient.Models
         public string baseQtyRq { get; set; }
         public OrderType ordType { get; set; }
         public TimeInForceType timeInForce { get; set; }
-        public OrderStatus ordStatus { get; set; }
+        public SpotOrderStatus ordStatus { get; set; }
         public string cumFeeRv { get; set; }
         public string cumBaseQtyRq { get; set; }
         public string cumQuoteQtyRq { get; set; }
@@ -66,7 +66,7 @@ namespace PhemexClient.Models
         public long baseQtyEv { get; set; }
         public OrderType ordType { get; set; }
         public TimeInForceType timeInForce { get; set; }
-        public OrderStatus ordStatus { get; set; }
+        public SpotOrderStatus ordStatus { get; set; }
         public long cumFeeEv { get; set; }
         public long cumBaseQtyEv { get; set; }
         public long cumQuoteQtyEv { get; set; }
@@ -81,10 +81,19 @@ namespace PhemexClient.Models
         public long pegOffsetValueEp { get; set; }
     }
 
-    public enum OrderStatus
+    public enum SpotOrderStatus
     {
-        Created
+        Untriggered,
+        Triggered,
+        Rejected,
+        New,
+        PartiallyFilled,
+        Filled,
+        Canceled
+
     }
+
+ 
 
     public class PhemexSpotOrderByID
     {
@@ -99,7 +108,7 @@ namespace PhemexClient.Models
         public string feeCurrency { get; set; }
         public long leavesBaseQtyEv { get; set; }
         public long leavesQuoteQtyEv { get; set; }
-        public OrderStatus ordStatus { get; set; }
+        public SpotOrderStatus ordStatus { get; set; }
         public OrderType ordType { get; set; }
         public string orderID { get; set; }
         public long priceEp { get; set; }
