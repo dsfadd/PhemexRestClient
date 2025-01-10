@@ -1,8 +1,5 @@
-﻿using CryptoExchange.Net.Converters.JsonNet;
-using Newtonsoft.Json;
-using PhemexClient.Converters;
-
-namespace PhemexClient.Enums
+﻿
+namespace PhemexRestClient.Enums
 {
     
     public enum ProductType

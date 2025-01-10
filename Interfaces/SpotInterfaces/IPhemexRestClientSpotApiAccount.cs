@@ -1,6 +1,6 @@
 ﻿using CryptoExchange.Net.Objects;
 using PhemexClient.Models;
-using PhemexClient.SpotApi;
+using PhemexRestClient.Api.SpotApi;
 
 namespace PhemexClient.Interfaces.SpotInterfaces
 {

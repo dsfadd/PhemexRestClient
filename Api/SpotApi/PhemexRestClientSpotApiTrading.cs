@@ -2,13 +2,13 @@
 using CryptoExchange.Net.CommonObjects;
 using CryptoExchange.Net.Converters.JsonNet;
 using CryptoExchange.Net.Objects;
-using PhemexClient.Enums;
+using PhemexRestClient.Enums;
 using PhemexClient.Interfaces.SpotInterfaces;
 using PhemexClient.Models;
 using System.Drawing;
 using System.Threading;
 
-namespace PhemexClient.SpotApi
+namespace PhemexRestClient.Api.SpotApi
 {
     internal class PhemexRestClientSpotApiTrading : IPhemexRestClientSpotApiTrading
     {
@@ -22,7 +22,7 @@ namespace PhemexClient.SpotApi
 
         public async Task<WebCallResult<PhemexDataCollection<PhemexSpotOrderByID>>> GetOrderByIDAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default)
         {
-            if (orderID is null && clOrdID is null) throw new ArgumentNullException(nameof(orderID)+nameof(clOrdID));
+            if (orderID is null && clOrdID is null) throw new ArgumentNullException(nameof(orderID) + nameof(clOrdID));
             var parameters = new Dictionary<string, object>()
             {
                 { "symbol", symbol },
@@ -30,7 +30,7 @@ namespace PhemexClient.SpotApi
             parameters.AddOptionalParameter("orderID", orderID);
             parameters.AddOptionalParameter("clOrdID", clOrdID);
             return await _baseClient.SendDataRequestAsync<PhemexDataCollection<PhemexSpotOrderByID>>("/api-data/spots/orders/by-order-id", HttpMethod.Get, cancellationToken, parameters, signed: true).ConfigureAwait(false);
-            
+
         }
 
         public async Task<WebCallResult<PhemexMarginOrderInfo>> PlaceMarginOrderAsync(string symbol,
@@ -43,12 +43,12 @@ namespace PhemexClient.SpotApi
             TriggerType? trigger = null,
             TimeInForceType? timeInForce = null,
             OrderType? ordType = null,
-            bool? autoBorrow = null, 
+            bool? autoBorrow = null,
             string? borrowCurrency = null,
-            string? borrowQtyRq = null, 
+            string? borrowQtyRq = null,
             bool? autoPayback = null,
             string? paybackCurrency = null,
-            string? paybackQtyRq = null, 
+            string? paybackQtyRq = null,
             CancellationToken cancellationToken = default)
         {
             if (priceRp == null) throw new ArgumentNullException(nameof(priceRp));
@@ -63,7 +63,7 @@ namespace PhemexClient.SpotApi
                 { "priceRp",priceRp }
              };
 
-            
+
             #region OptinalParams
             parameters.AddOptionalParameter("quoteQtyRq", quoteQtyRq);
             parameters.AddOptionalParameter("baseQtyRq", baseQtyRq);
@@ -87,15 +87,15 @@ namespace PhemexClient.SpotApi
             OrderSide side,
             QuantityType qtyType,
             string priceEp,
-            string? quoteQtyEv = null, 
-            string? baseQtyEv = null, 
+            string? quoteQtyEv = null,
+            string? baseQtyEv = null,
             string? stopPxEp = null,
-            TriggerType? trigger = null, 
+            TriggerType? trigger = null,
             TimeInForceType? timeInForce = null,
             OrderType? ordType = null,
             CancellationToken cancellationToken = default)
         {
-            if (priceEp==null) throw new ArgumentNullException(nameof(priceEp));
+            if (priceEp == null) throw new ArgumentNullException(nameof(priceEp));
             if (qtyType == QuantityType.ByBase && baseQtyEv == null) throw new ArgumentNullException(nameof(baseQtyEv));
             if (qtyType == QuantityType.ByQuote && quoteQtyEv == null) throw new ArgumentNullException(nameof(quoteQtyEv));
             var parameters = new Dictionary<string, object>()
@@ -121,7 +121,7 @@ namespace PhemexClient.SpotApi
 
 
 
-    
+
 
 
 

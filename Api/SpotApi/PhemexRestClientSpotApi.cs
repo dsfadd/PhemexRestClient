@@ -4,18 +4,19 @@ using CryptoExchange.Net.Interfaces.CommonClients;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.SharedApis;
 using Microsoft.Extensions.Logging;
+using PhemexClient;
 using PhemexClient.Interfaces.SpotInterfaces;
 using PhemexClient.Models;
 using PhemexClient.Objects;
 
-namespace PhemexClient.SpotApi
+namespace PhemexRestClient.Api.SpotApi
 {
     internal class PhemexRestClientSpotApi : RestApiClient, IPhemexRestClientSpotApi
     {
 
 
         #region Api Clients
-        public IPhemexRestClientSpotApiAccount Account  {get;}
+        public IPhemexRestClientSpotApiAccount Account { get; }
 
         public IPhemexRestClientSpotApiExchangeData ExchangeData { get; }
 
@@ -37,15 +38,15 @@ namespace PhemexClient.SpotApi
             bool signed = false,
             bool ignoreRatelimit = false)
         {
-                var result = await base.SendRequestAsync<PhemexResult<T>>(GetUri(endpoint), method, cancellationToken, parameters, signed, requestWeight: 0, parameterPosition: HttpMethodParameterPosition.InUri).ConfigureAwait(false);
+            var result = await base.SendRequestAsync<PhemexResult<T>>(GetUri(endpoint), method, cancellationToken, parameters, signed, requestWeight: 0, parameterPosition: HttpMethodParameterPosition.InUri).ConfigureAwait(false);
 
-                if (!result)
-                    return result.As<T>(default);
+            if (!result)
+                return result.As<T>(default);
 
-                if (result.Data.Code != 0)
-                    return result.AsError<T>(new ServerError(result.Data.Message ?? "", result.Data.Code));
+            if (result.Data.Code != 0)
+                return result.AsError<T>(new ServerError(result.Data.Message ?? "", result.Data.Code));
 
-                return result.As(result.Data.Result);
+            return result.As(result.Data.Result);
         }
         internal async Task<WebCallResult<T>> SendDataRequestAsync<T>(
            string endpoint,
@@ -66,10 +67,10 @@ namespace PhemexClient.SpotApi
             return result.As(result.Data.Data);
         }
 
-        internal async Task<WebCallResult<PhemexExchangeInfo>> GetExchangeInfoAsync(CancellationToken cancellationToken=default)
+        internal async Task<WebCallResult<PhemexExchangeInfo>> GetExchangeInfoAsync(CancellationToken cancellationToken = default)
         {
-           
-            return await this.SendDataRequestAsync<PhemexExchangeInfo>("/public/products", HttpMethod.Get, cancellationToken);
+
+            return await SendDataRequestAsync<PhemexExchangeInfo>("/public/products", HttpMethod.Get, cancellationToken);
         }
 
 
@@ -97,14 +98,14 @@ namespace PhemexClient.SpotApi
         {
 
             Account = new PhemexRestClientSpotApiAccount(this);
-           ExchangeData = new PhemexRestClientSpotApiExchangeData(this);
+            ExchangeData = new PhemexRestClientSpotApiExchangeData(this);
             Trading = new PhemexRestClientSpotApiTrading(this);
         }
         public ISpotClient CommonSpotClient => throw new NotImplementedException();
 
         public override TimeSyncInfo? GetTimeSyncInfo()
         {
-           return new TimeSyncInfo(_logger, (ApiOptions.AutoTimestamp ?? ClientOptions.AutoTimestamp), (ApiOptions.TimestampRecalculationInterval ?? ClientOptions.TimestampRecalculationInterval), _timeSyncState);
+            return new TimeSyncInfo(_logger, ApiOptions.AutoTimestamp ?? ClientOptions.AutoTimestamp, ApiOptions.TimestampRecalculationInterval ?? ClientOptions.TimestampRecalculationInterval, _timeSyncState);
 
         }
 

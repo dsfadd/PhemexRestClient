@@ -1,5 +1,5 @@
 ﻿using CryptoExchange.Net.Objects;
-using PhemexClient.Enums;
+using PhemexRestClient.Enums;
 using PhemexClient.Models;
 
 namespace PhemexClient.Interfaces.SpotInterfaces

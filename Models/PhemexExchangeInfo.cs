@@ -1,7 +1,7 @@
 ﻿using CryptoExchange.Net.Converters.JsonNet;
 using Newtonsoft.Json;
 using PhemexClient.Converters;
-using PhemexClient.Enums;
+using PhemexRestClient.Enums;
 using System;
 
 namespace PhemexClient.Models

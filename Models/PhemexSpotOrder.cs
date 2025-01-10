@@ -1,4 +1,4 @@
-﻿using PhemexClient.Enums;
+﻿using PhemexRestClient.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,7 +3,7 @@ using CryptoExchange.Net.Objects;
 using PhemexClient.Interfaces.SpotInterfaces;
 using PhemexClient.Models;
 
-namespace PhemexClient.SpotApi
+namespace PhemexRestClient.Api.SpotApi
 {
     internal class PhemexRestClientSpotApiAccount : IPhemexRestClientSpotApiAccount
     {
@@ -13,13 +13,13 @@ namespace PhemexClient.SpotApi
             _baseClient = baseClient;
         }
 
-        public async Task<WebCallResult<IEnumerable<PhemexSpotWallet>>> GetBalancesAsync (string? currency = null,CancellationToken cancellationToken=default)
+        public async Task<WebCallResult<IEnumerable<PhemexSpotWallet>>> GetBalancesAsync(string? currency = null, CancellationToken cancellationToken = default)
         {
             var parameters = new Dictionary<string, object>();
             parameters.AddOptionalParameter("currency", currency);
 
-            return await _baseClient.SendDataRequestAsync<IEnumerable<PhemexSpotWallet>>("/spot/wallets",HttpMethod.Get, cancellationToken, parameters, signed:true).ConfigureAwait(false);
-           
+            return await _baseClient.SendDataRequestAsync<IEnumerable<PhemexSpotWallet>>("/spot/wallets", HttpMethod.Get, cancellationToken, parameters, signed: true).ConfigureAwait(false);
+
         }
 
 

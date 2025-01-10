@@ -2,20 +2,13 @@
 using CryptoExchange.Net.Clients;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using PhemexClient;
 using PhemexClient.Interfaces;
-using PhemexClient.Interfaces.SpotInterfaces;
-using PhemexClient.SpotApi;
 using PhemexClient.Interfaces.CoinMInterfaces;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json.Nodes;
+using PhemexClient.Interfaces.SpotInterfaces;
+using PhemexRestClient.Api.SpotApi;
 
-using static System.Net.WebRequestMethods;
-
-
+namespace PhemexRestClient;
 public class PhemexRestClient : BaseRestClient, IPhemexRestClient
 {
 
@@ -36,7 +29,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
         Initialize(options.Value);
 
         SpotApi = AddApiClient(new PhemexRestClientSpotApi(_logger, httpClient, options.Value));
-        CoinMApi = AddApiClient(new PhemexRestClientCoinMApi(_logger, httpClient, options.Value));
+        //CoinMApi = AddApiClient(new PhemexRestClientCoinMApi(_logger, httpClient, options.Value));
 
     }
 

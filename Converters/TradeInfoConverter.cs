@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PhemexClient.Enums;
+using PhemexRestClient.Enums;
 using PhemexClient.Models;
 
 namespace PhemexClient.Converters

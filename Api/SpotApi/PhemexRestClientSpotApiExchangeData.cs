@@ -2,9 +2,10 @@
 using CryptoExchange.Net.Objects;
 using PhemexClient.Interfaces.SpotInterfaces;
 using PhemexClient.Models;
+using PhemexRestClient.Enums;
 using System.Threading;
 
-namespace PhemexClient.SpotApi
+namespace PhemexRestClient.Api.SpotApi
 {
     internal class PhemexRestClientSpotApiExchangeData : IPhemexRestClientSpotApiExchangeData
     {
@@ -14,7 +15,7 @@ namespace PhemexClient.SpotApi
             _baseClient = baseClient;
         }
 
-        public async Task<WebCallResult<PhemexOrderBook>> GetOrderBookAsync(string symbol ,CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<PhemexOrderBook>> GetOrderBookAsync(string symbol, CancellationToken cancellationToken = default)
         {
             var parameters = new Dictionary<string, object>()
             {
@@ -35,9 +36,9 @@ namespace PhemexClient.SpotApi
 
         public async Task<IEnumerable<ProductBase>> GetSymbolsAsync(CancellationToken cancellationToken = default)
         {
-            var ExchangeInfoCallResult=await _baseClient.GetExchangeInfoAsync(cancellationToken);
+            var ExchangeInfoCallResult = await _baseClient.GetExchangeInfoAsync(cancellationToken);
             if (!(ExchangeInfoCallResult && ExchangeInfoCallResult.Data != null)) return null;
-               return ExchangeInfoCallResult.Data.products.Where(product=>product.type==Enums.ProductType.Spot);
+            return ExchangeInfoCallResult.Data.products.Where(product => product.type == ProductType.Spot);
         }
 
         public async Task<WebCallResult<PhemexSpotTicker>> GetTickersAsync(string symbol, CancellationToken cancellationToken = default)
@@ -46,9 +47,9 @@ namespace PhemexClient.SpotApi
             {
                 { "symbol", symbol }
              };
-            return await  _baseClient.SendMDRequestAsync<PhemexSpotTicker>("/md/spot/ticker/24hr", HttpMethod.Get, cancellationToken,parameters);
+            return await _baseClient.SendMDRequestAsync<PhemexSpotTicker>("/md/spot/ticker/24hr", HttpMethod.Get, cancellationToken, parameters);
         }
-        public async Task<WebCallResult<IEnumerable<PhemexSpotTicker>>> GetTickersAsync( CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<IEnumerable<PhemexSpotTicker>>> GetTickersAsync(CancellationToken cancellationToken = default)
         {
             return await _baseClient.SendMDRequestAsync<IEnumerable<PhemexSpotTicker>>("/md/spot/ticker/24hr/all", HttpMethod.Get, cancellationToken);
         }
