@@ -14,7 +14,7 @@ namespace PhemexRestClient.Api.SpotApi
     internal class PhemexRestClientSpotApi : RestApiClient, IPhemexRestClientSpotApi
     {
 
-
+        internal static TimeSyncState _timeSyncState = new TimeSyncState("Spot Api");
         #region Api Clients
         public IPhemexRestClientSpotApiAccount Account { get; }
 
@@ -113,7 +113,7 @@ namespace PhemexRestClient.Api.SpotApi
         {
             return _timeSyncState.TimeOffset;
         }
-        internal static TimeSyncState _timeSyncState = new TimeSyncState("Spot Api");
+        
         protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
             => new PhemexAuthenticationProvider(credentials);
 
