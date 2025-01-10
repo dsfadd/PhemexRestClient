@@ -9,7 +9,7 @@ namespace PhemexClient.Interfaces.SpotInterfaces
 
         public Task<WebCallResult<IEnumerable<PhemexSpotTicker>>> GetTickersAsync(CancellationToken cancellationToken = default);
         public Task<WebCallResult<PhemexSpotTicker>> GetTickersAsync(string symbol, CancellationToken cancellationToken = default);
-        public Task<WebCallResult<PhemexSpotTrade>> GetRecentTradesAsync(string symbol, CancellationToken cancellationToken = default);
+        public Task<WebCallResult<PhemexRecentTrade>> GetRecentTradesAsync(string symbol, CancellationToken cancellationToken = default);
 
         public Task<IEnumerable<ProductBase>> GetSymbolsAsync(CancellationToken cancellationToken = default);
 

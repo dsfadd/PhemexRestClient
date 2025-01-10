@@ -25,13 +25,13 @@ namespace PhemexRestClient.Api.SpotApi
         }
 
 
-        public async Task<WebCallResult<PhemexSpotTrade>> GetRecentTradesAsync(string symbol, CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<PhemexRecentTrade>> GetRecentTradesAsync(string symbol, CancellationToken cancellationToken = default)
         {
             var parameters = new Dictionary<string, object>()
             {
                 { "symbol", symbol }
              };
-            return await _baseClient.SendMDRequestAsync<PhemexSpotTrade>("/md/trade", HttpMethod.Get, cancellationToken, parameters);
+            return await _baseClient.SendMDRequestAsync<PhemexRecentTrade>("/md/trade", HttpMethod.Get, cancellationToken, parameters);
         }
 
         public async Task<IEnumerable<ProductBase>> GetSymbolsAsync(CancellationToken cancellationToken = default)
