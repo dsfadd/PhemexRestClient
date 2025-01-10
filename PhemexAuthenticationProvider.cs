@@ -52,7 +52,6 @@ namespace PhemexClient
             headers.Add("x-phemex-request-signature", signature);
 
             var tracingId = Guid.NewGuid().ToString("N").Substring(0, 32);
-            ;
             headers.Add("x-phemex-request-tracing", tracingId);
         }
 
