@@ -20,7 +20,7 @@ namespace PhemexClient.SpotApi
             _baseClient = baseClient;
         }
 
-        public async Task<WebCallResult<PhemexSpotOrderByID>> GetOrderByIDAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<PhemexDataCollection<PhemexSpotOrderByID>>> GetOrderByIDAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default)
         {
             if (orderID is null && clOrdID is null) throw new ArgumentNullException(nameof(orderID)+nameof(clOrdID));
             var parameters = new Dictionary<string, object>()
@@ -29,7 +29,7 @@ namespace PhemexClient.SpotApi
              };
             parameters.AddOptionalParameter("orderID", orderID);
             parameters.AddOptionalParameter("clOrdID", clOrdID);
-            return await _baseClient.SendDataRequestAsync<PhemexSpotOrderByID>("/api-data/spots/orders/by-order-id", HttpMethod.Get, cancellationToken, parameters, signed: true).ConfigureAwait(false);
+            return await _baseClient.SendDataRequestAsync<PhemexDataCollection<PhemexSpotOrderByID>>("/api-data/spots/orders/by-order-id", HttpMethod.Get, cancellationToken, parameters, signed: true).ConfigureAwait(false);
             
         }
 
