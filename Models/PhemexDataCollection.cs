@@ -1,9 +1,8 @@
 ﻿
-namespace PhemexRestClient.Models
+namespace PhemexClient.Models
 {
     public class PhemexDataCollection<T>
     {
-        public List<T> rows { get; set; }
-
+        public List<T> Rows { get; set; } = new List<T>();
     }
 }
