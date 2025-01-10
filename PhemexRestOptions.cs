@@ -26,6 +26,7 @@ namespace PhemexClient
         public TimeSpan ReceiveWindow { get; set; } = TimeSpan.FromSeconds(5);
 
         public RestApiOptions SpotOptions { get; private set; } = new RestApiOptions();
+        public RestApiOptions CoinMOptions { get; private set; } = new RestApiOptions();
 
 
 
@@ -35,6 +36,7 @@ namespace PhemexClient
             targetOptions.Referer = Referer;
             targetOptions.ReceiveWindow = ReceiveWindow;
             targetOptions.SpotOptions = SpotOptions.Set(targetOptions.SpotOptions);
+            targetOptions.CoinMOptions = CoinMOptions.Set(targetOptions.CoinMOptions);
             return targetOptions;
         }
     }

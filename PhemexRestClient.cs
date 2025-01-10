@@ -7,6 +7,7 @@ using PhemexClient;
 using PhemexClient.Interfaces;
 using PhemexClient.Interfaces.SpotInterfaces;
 using PhemexClient.SpotApi;
+using PhemexClient.Interfaces.CoinMInterfaces;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -19,7 +20,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
 {
 
    public IPhemexRestClientSpotApi SpotApi { get; }
-
+    public IPhemexRestClientCoinMApi CoinMApi { get; }
   
     #region constructor/destructor
 
@@ -35,7 +36,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
         Initialize(options.Value);
 
         SpotApi = AddApiClient(new PhemexRestClientSpotApi(_logger, httpClient, options.Value));
-        //ContractApi = AddApiClient(new BybitRestClientCopyTradingApi(_logger, httpClient, options.Value));
+        CoinMApi = AddApiClient(new PhemexRestClientCoinMApi(_logger, httpClient, options.Value));
 
     }
 
@@ -56,8 +57,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
     public void SetApiCredentials(ApiCredentials credentials)
     {
         SpotApi.SetApiCredentials(credentials);
-       
-
+        CoinMApi.SetApiCredentials(credentials);
     }
 }
 
