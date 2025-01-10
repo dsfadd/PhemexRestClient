@@ -6,6 +6,7 @@ using PhemexClient;
 using PhemexClient.Interfaces;
 using PhemexClient.Interfaces.CoinMInterfaces;
 using PhemexClient.Interfaces.SpotInterfaces;
+using PhemexRestClient.Api.CoinMApi;
 using PhemexRestClient.Api.SpotApi;
 
 namespace PhemexRestClient;
@@ -29,7 +30,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
         Initialize(options.Value);
 
         SpotApi = AddApiClient(new PhemexRestClientSpotApi(_logger, httpClient, options.Value));
-        //CoinMApi = AddApiClient(new PhemexRestClientCoinMApi(_logger, httpClient, options.Value));
+        CoinMApi = AddApiClient(new PhemexRestClientCoinMApi(_logger, httpClient, options.Value));
 
     }
 
