@@ -13,7 +13,10 @@ namespace PhemexClient.Enums
         Stop,
         StopLimit,
         MarketIfTouched,
-        LimitIfTouched
+        LimitIfTouched,
+        MarketAsLimit,
+        StopAsLimit,
+        MarketIfTouchedAsLimit
     }
 
     public enum OrderSide
