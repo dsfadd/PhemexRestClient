@@ -27,7 +27,6 @@ namespace PhemexClient
 
         public RestApiOptions SpotOptions { get; private set; } = new RestApiOptions();
 
-        public RestApiOptions ConctractOptions { get; private set; } = new RestApiOptions();
 
 
         internal PhemexRestOptions Set(PhemexRestOptions targetOptions)
@@ -36,7 +35,6 @@ namespace PhemexClient
             targetOptions.Referer = Referer;
             targetOptions.ReceiveWindow = ReceiveWindow;
             targetOptions.SpotOptions = SpotOptions.Set(targetOptions.SpotOptions);
-            targetOptions.ConctractOptions = ConctractOptions.Set(targetOptions.ConctractOptions);
             return targetOptions;
         }
     }

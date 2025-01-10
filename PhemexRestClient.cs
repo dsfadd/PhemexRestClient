@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using PhemexClient;
 using PhemexClient.Interfaces;
-using PhemexClient.Interfaces.ContractInterfaces;
 using PhemexClient.Interfaces.SpotInterfaces;
 using PhemexClient.SpotApi;
 using System.Net;
@@ -21,7 +20,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
 
    public IPhemexRestClientSpotApi SpotApi { get; }
 
-  public  IPhemexRestClientContractApi ContractApi { get; }
+  
     #region constructor/destructor
 
     public PhemexRestClient(Action<PhemexRestOptions>? optionsDelegate = null)
@@ -57,7 +56,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
     public void SetApiCredentials(ApiCredentials credentials)
     {
         SpotApi.SetApiCredentials(credentials);
-        ContractApi.SetApiCredentials(credentials);
+       
 
     }
 }
