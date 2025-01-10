@@ -16,8 +16,8 @@ namespace PhemexClient.Objects
         [JsonProperty("msg")]
         public string? Message { get; set; }
 
-
 #pragma warning disable 8618
+        [JsonProperty("result")]
         public T Result { get; set; }
 #pragma warning restore
     }
@@ -32,6 +32,7 @@ namespace PhemexClient.Objects
 
 
 #pragma warning disable 8618
+        [JsonProperty("data")]
         public T Data { get; set; }
 #pragma warning restore
     }
@@ -44,6 +45,7 @@ namespace PhemexClient.Objects
         public int id { get; set; }
 
 #pragma warning disable 8618
+        [JsonProperty("result")]
         public T Result { get; set; }
 #pragma warning restore
     }
