@@ -20,7 +20,7 @@ namespace PhemexClient.SpotApi
             _baseClient = baseClient;
         }
 
-        public async Task<WebCallResult<PhemexSpotOrderByID>> GetOrdersByIDAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<PhemexSpotOrderByID>> GetOrderByIDAsync(string symbol, string? orderID = null, string? clOrdID = null, CancellationToken cancellationToken = default)
         {
             if (orderID is null && clOrdID is null) throw new ArgumentNullException(nameof(orderID)+nameof(clOrdID));
             var parameters = new Dictionary<string, object>()
