@@ -15,10 +15,13 @@ namespace PhemexRestClient.Api.USDTMApi
     {
         public IPhemexRestClientUSDTMApiExchangeData ExchangeData { get; }
 
+        public IPhemexRestClientUSDTMApiAccount Account { get; }
+
         internal PhemexRestClientUSDTMApi(ILogger logger, HttpClient? httpClient, PhemexRestOptions options) 
             : base(logger, httpClient, options, options.USDTMOptions)
         {
             ExchangeData = new PhemexRestClientUSDTMApiExchangeData(this);
+            Account=new PhemexRestClientUSDTMApiAccount(this);
         }
 
         

@@ -10,6 +10,6 @@ namespace PhemexRestClient.Interfaces.USDTmApiInterfaces
 {
     public interface IPhemexRestClientUSDTMApiAccount
     {
-            public Task<WebCallResult<PhemexUSDTMAccountAndPositions>> GetTradingAccountAndPositionsAsync(string currency, CancellationToken cancellationToken = default);
+            public Task<WebCallResult<PhemexUSDTMAccountAndPositions>> GetTradingAccountAndPositionsAsync(string currency,string? symbol=null, CancellationToken cancellationToken = default);
     }
 }
