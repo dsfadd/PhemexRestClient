@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PhemexClient.Converters;
+using PhemexRestClient.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +11,10 @@ namespace PhemexRestClient.Models
 {
 
   
-    public class Result
+    public class PhemexUSDTMOrderBook
     {
         public int depth { get; set; }
+        [JsonConverter(typeof(USDTMOrderBookConverter))]
         public Orderbook_P orderbook_p { get; set; }
         public long sequence { get; set; }
         public string symbol { get; set; }
@@ -26,13 +30,13 @@ namespace PhemexRestClient.Models
 
     public class USDTMBid
     {
-        public long priceRp { get; set; }
-        public long size { get; set; }
+        public decimal priceRp { get; set; }
+        public decimal size { get; set; }
     }
     public class USDTMAsk
     {
-        public long priceRp { get; set; }
-        public long size { get; set; }
+        public decimal priceRp { get; set; }
+        public decimal size { get; set; }
 
     }
 
