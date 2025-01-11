@@ -27,5 +27,10 @@ namespace PhemexClient.Interfaces.CoinMInterfaces
         TrailingOrderPriceType? pegPriceType = null,
         CancellationToken cancellationToken = default
             );
+
+        public Task<WebCallResult<IEnumerable<PhemexCoinMOrderByID>>> GetUserOrderByID(string symbol,
+            string? orderID=null,
+            string? clOrdID=null,
+            CancellationToken cancellationToken=default);
     }
 }
