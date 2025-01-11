@@ -4,21 +4,21 @@ namespace PhemexRestClient.Models
 {
     public class PhemexUSDTMTicker
     {
-        public string askRp { get; set; }
-        public string bidRp { get; set; }
-        public string fundingRateRr { get; set; }
-        public string highRp { get; set; }
-        public string indexRp { get; set; }
-        public string lastRp { get; set; }
-        public string lowRp { get; set; }
-        public string markRp { get; set; }
-        public string openInterestRv { get; set; }
-        public string openRp { get; set; }
-        public string predFundingRateRr { get; set; }
+        public decimal askRp { get; set; }
+        public decimal bidRp { get; set; }
+        public decimal fundingRateRr { get; set; }
+        public decimal highRp { get; set; }
+        public decimal indexRp { get; set; }
+        public decimal lastRp { get; set; }
+        public decimal lowRp { get; set; }
+        public decimal markRp { get; set; }
+        public decimal openInterestRv { get; set; }
+        public decimal openRp { get; set; }
+        public decimal predFundingRateRr { get; set; }
         public string symbol { get; set; }
         public long timestamp { get; set; }
-        public string turnoverRv { get; set; }
-        public string volumeRq { get; set; }
+        public decimal turnoverRv { get; set; }
+        public decimal volumeRq { get; set; }
     }
 
 }

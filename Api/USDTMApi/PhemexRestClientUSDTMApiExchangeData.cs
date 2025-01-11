@@ -1,6 +1,7 @@
 ﻿using CryptoExchange.Net.Objects;
 using PhemexClient.Models;
 using PhemexRestClient.Api.Base;
+using PhemexRestClient.Enums;
 using PhemexRestClient.Interfaces.USDTmApiInterfaces;
 using PhemexRestClient.Models;
 
@@ -23,24 +24,34 @@ namespace PhemexRestClient.Api.USDTMApi
             return await _baseClient.SendMDRequestAsync<PhemexUSDTMOrderBook>("/md/v2/orderbook", HttpMethod.Get, cancellationToken, parameters);
         }
 
-        public Task<WebCallResult<PhemexUSDTMRecentTradeInfo>> GetRecentTradesAsync(string symbol, CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<PhemexUSDTMRecentTradeInfo>> GetRecentTradesAsync(string symbol, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var parameters = new Dictionary<string, object>()
+            {
+                { "symbol", symbol }
+             };
+            return await _baseClient.SendMDRequestAsync<PhemexUSDTMRecentTradeInfo>("/md/v2/trade", HttpMethod.Get, cancellationToken, parameters);
         }
 
-        public Task<IEnumerable<Perpproductsv2>> GetSymbolsAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Perpproductsv2>> GetSymbolsAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var ExchangeInfoCallResult = await _baseClient.GetExchangeInfoAsync(cancellationToken);
+            return ExchangeInfoCallResult.Data.perpProductsV2.Where(product => product.status =="Listed");
         }
 
-        public Task<WebCallResult<IEnumerable<PhemexUSDTMTicker>>> GetTickersAsync(CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<IEnumerable<PhemexUSDTMTicker>>> GetTickersAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            return await _baseClient.SendMDRequestAsync<IEnumerable<PhemexUSDTMTicker>>("/md/v3/ticker/24hr/all", HttpMethod.Get, cancellationToken);
         }
 
-        public Task<WebCallResult<PhemexUSDTMTicker>> GetTickersAsync(string symbol, CancellationToken cancellationToken = default)
+        public async Task<WebCallResult<PhemexUSDTMTicker>> GetTickersAsync(string symbol, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            
+             var parameters = new Dictionary<string, object>()
+{
+             { "symbol", symbol }
+ };
+            return await _baseClient.SendMDRequestAsync<PhemexUSDTMTicker>("/md/v3/ticker/24hr", HttpMethod.Get, cancellationToken, parameters);
         }
     }
 }

@@ -4,6 +4,7 @@ using PhemexRestClient.Enums;
 
 namespace PhemexClient.Models
 {
+    //rename
     public class PhemexRecentTrade
     {
         public string type { get; set; }
