@@ -1,5 +1,4 @@
-﻿using PhemexClient.Models;
-using PhemexRestClient.Enums;
+﻿using PhemexRestClient.Enums;
 
 namespace PhemexRestClient.Models
 {
