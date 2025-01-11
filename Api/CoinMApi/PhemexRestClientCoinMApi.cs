@@ -33,6 +33,7 @@ namespace PhemexRestClient.Api.CoinMApi
 
             ExchangeData = new PhemexRestClientCoinMApiExchangeData(this);
             Account = new PhemexRestClientCoinMApiAccount(this);
+            Trading = new PhemexRestClientCoinMApiTrading(this);
 
         }
 
