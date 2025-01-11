@@ -8,6 +8,8 @@ using PhemexClient.Interfaces.CoinMInterfaces;
 using PhemexClient.Interfaces.SpotInterfaces;
 using PhemexRestClient.Api.CoinMApi;
 using PhemexRestClient.Api.SpotApi;
+using PhemexRestClient.Api.USDTMApi;
+using PhemexRestClient.Interfaces.USDTmApiInterfaces;
 
 namespace PhemexRestClient;
 public class PhemexRestClient : BaseRestClient, IPhemexRestClient
@@ -15,7 +17,9 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
 
    public IPhemexRestClientSpotApi SpotApi { get; }
     public IPhemexRestClientCoinMApi CoinMApi { get; }
-  
+
+    public IPhemexRestClientUSDTMApi USDTMApi { get; }
+
     #region constructor/destructor
 
     public PhemexRestClient(Action<PhemexRestOptions>? optionsDelegate = null)
@@ -31,6 +35,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
 
         SpotApi = AddApiClient(new PhemexRestClientSpotApi(_logger, httpClient, options.Value));
         CoinMApi = AddApiClient(new PhemexRestClientCoinMApi(_logger, httpClient, options.Value));
+        USDTMApi = AddApiClient(new PhemexRestClientUSDTMApi(_logger, httpClient, options.Value));
 
     }
 
@@ -52,6 +57,7 @@ public class PhemexRestClient : BaseRestClient, IPhemexRestClient
     {
         SpotApi.SetApiCredentials(credentials);
         CoinMApi.SetApiCredentials(credentials);
+        USDTMApi.SetApiCredentials(credentials);
     }
 }
 

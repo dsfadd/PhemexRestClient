@@ -27,6 +27,7 @@ namespace PhemexClient
 
         public RestApiOptions SpotOptions { get; private set; } = new RestApiOptions();
         public RestApiOptions CoinMOptions { get; private set; } = new RestApiOptions();
+        public RestApiOptions USDTMOptions { get; private set; } = new RestApiOptions();
 
 
 
@@ -37,6 +38,7 @@ namespace PhemexClient
             targetOptions.ReceiveWindow = ReceiveWindow;
             targetOptions.SpotOptions = SpotOptions.Set(targetOptions.SpotOptions);
             targetOptions.CoinMOptions = CoinMOptions.Set(targetOptions.CoinMOptions);
+            targetOptions.USDTMOptions = USDTMOptions.Set(targetOptions.USDTMOptions);
             return targetOptions;
         }
     }
