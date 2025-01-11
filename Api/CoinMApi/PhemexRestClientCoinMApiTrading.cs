@@ -17,6 +17,29 @@ namespace PhemexRestClient.Api.CoinMApi
             _baseClient = baseClient;
         }
 
+        public async Task<WebCallResult<IEnumerable<PhemexCoinMOrderByID>>> GetUserOrderByID(string symbol,
+            string[]? orderID = null,
+            string[]? clOrdID = null,
+            CancellationToken cancellationToken = default)
+        {
+            if (orderID != null && clOrdID != null) throw new ArgumentException("orderID or clOrdID need to be null");
+            if (orderID == null && clOrdID == null) throw new ArgumentNullException("orderID and clOrdID is not to be null");
+
+            KeyValuePair<string, object> paramPair = (orderID, clOrdID) switch
+            {
+                (not null,null) => new KeyValuePair<string, object>(key:"orderID",value:string.Join(',', orderID)),
+                (null,not null) => new KeyValuePair<string, object>(key: "clOrdID", value: string.Join(',', clOrdID))
+            };
+
+            var parameters = new Dictionary<string, object>()
+            {
+                { "symbol",symbol}
+            };
+            parameters.AddOptionalParameter(paramPair.Key, paramPair.Value);
+
+            return await _baseClient.SendDataRequestAsync<IEnumerable<PhemexCoinMOrderByID>>("/exchange/order", HttpMethod.Put, cancellationToken, parameters, signed: true).ConfigureAwait(false);
+        }
+
 
         public async Task<WebCallResult<PhemexCoinMOrder>> PlaceOrderAsync(string symbol, 
             string clOrdID,
