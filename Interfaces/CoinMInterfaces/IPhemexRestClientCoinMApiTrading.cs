@@ -29,8 +29,9 @@ namespace PhemexClient.Interfaces.CoinMInterfaces
             );
 
         public Task<WebCallResult<IEnumerable<PhemexCoinMOrderByID>>> GetUserOrderByID(string symbol,
-            string? orderID=null,
-            string? clOrdID=null,
-            CancellationToken cancellationToken=default);
+            string[]? orderID = null,
+             string[]? clOrdID = null,
+            CancellationToken cancellationToken=default
+            );
     }
 }
